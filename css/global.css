@@ -78,19 +78,45 @@ nav.options > h3 {
 
 /*banner */
 div.banner {
+    position: relative;
     display: flex;
-    height: 400px;
+    height: 300px;
     background-image: url("../resources/images/banner.jpg");
+    background-position: center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
     align-items: end;
 }
 
 button.more-information {
+    position: absolute;
     margin-left: 10%;
     margin-bottom: 3%;
     background-color: darkred;
-    font-size: medium;
+    top: calc(50% - -12px); 
+    font-size: x-small;
 }
+ /*default breakpoints from material UI: https://mui.com/material-ui/customization/breakpoints/#default-breakpoints*/
+@media screen and (min-width: 600px) {
+    button.more-information {
+        padding: 2px 4px;
+        font-size: small;
+        top: calc(50% - -25px);
+    }
+  } 
 
+  @media screen and (min-width: 900px) {
+    button.more-information {
+        top: calc(50% - -35px);
+    }
+  } 
+
+  @media screen and (min-width: 1200px) {
+    button.more-information {
+        padding: 6px 8px;
+        top: calc(50% - -45px);
+    }
+  } 
 
 /* City filter */
 div.filter {
