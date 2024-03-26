@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/global.css" />
+    <title>Document</title>
+    <script src="../javascript/get-movie.js" type="module"></script>
+    <script src="../javascript/constants.js" type="module"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="about-us">
+            <div class="social-media">
+                <img src="../resources/icons/facebook.png">
+                <img src="../resources/icons/twitter.png">
+                <img src="../resources/icons/instagram.png">
+            </div>
+            <div></div>
+            <div class="login">
+                <button class="sign-up">Sign Up</button>
+                <button class="log-in">Log in</button>
+            </div>
+        </nav>
+        <nav class="shop-options">
+            <img class="logo" src="../resources/images/cinemark_logo.png" />
+            <nav class="options">
+                <h3>Billboard</h3>
+                <h3>Theaters</h3>
+                <h3>Snackbar</h3>
+                <h3>Promotions</h3>
+            </nav>
+        </nav>
+    </header>
+
+    <div class="banner">
+        <button class="more-information">More Information</button>
+    </div>
+
+    <div class="filter">
+        <div class="city-filter">
+            <h3>You are in:</h2>
+                <select required aria-placeholder="Value2">
+                    <option value="None" hidden>None</option>
+                    <option value="value2">Value 2</option>
+                    <option value="value3">Value 3</option>
+                </select>
+        </div>
+        <div class="local-filter">
+            <h3>Theaters:</h2>
+                <select required aria-placeholder="Value2">
+                    <option value="None" hidden>None</option>
+                    <option value="value2">Value 2</option>
+                    <option value="value3">Value 3</option>
+                </select>
+        </div>
+    </div>
+
+    <h1>One Hundred and One Dalmatians</h1>
+    <div class="movie-details" id="movie-details">
+        <div class="details" id="details"></div>
+    </div>
+</body>
+<script type="module">
+    import { get_movie } from '../javascript/get-movie.js';
+
+    const createImag = (movie) => {
+        const imag = movie.primaryImage.url
+        const alternativeText = movie.primaryImage.caption.plainText
+        const imgElement = document.createElement("img");
+        imgElement.src = imag
+        imgElement.alt = alternativeText
+        return imgElement
+    }
+
+    const formatDuration = (seconds) => {
+        var hours = Math.floor(seconds / 3600);
+        var minutes = Math.floor((seconds % 3600) / 60);
+        hours = (hours < 10) ? "0" + hours : hours;
+        minutes = (minutes < 10) ? "0" + minutes : minutes;
+        return hours + ":" + minutes;
+    }
+
+    get_movie('tt0055254')
+        .then((data) => {
+            const movie = data.results
+            const imageContainer = document.createElement("div")
+            imageContainer.className = "poster-container"
+            const imgElement = createImag(movie)
+            imageContainer.appendChild(imgElement)
+
+            const detailsContainer = document.createElement("div")
+            detailsContainer.className = 'details-container'
+
+            const nameContainer = document.createElement("div")
+            nameContainer.className = 'detail-container'
+            const nameLabel = document.createElement("h3");
+            nameLabel.className = 'text-label'
+            nameLabel.textContent = "NAME"
+            const nameValue = document.createElement("p");
+            nameValue.className = 'text-value'
+            nameValue.textContent = movie.titleText.text
+            nameContainer.appendChild(nameLabel)
+            nameContainer.appendChild(nameValue)
+
+            const genresContainer = document.createElement("div")
+            genresContainer.className = 'detail-container'
+            const genreLabel = document.createElement("h3");
+            genreLabel.className = 'text-label'
+            genreLabel.textContent = "GENRES"
+            const genres = movie.genres.genres.map(genre => genre.text).join(', ');
+            const genreValue = document.createElement("p");
+            genreValue.className = 'text-value'
+            genreValue.textContent = genres
+            genresContainer.appendChild(genreLabel)
+            genresContainer.appendChild(genreValue)
+
+
+            const sinopsisContainer = document.createElement("div")
+            sinopsisContainer.className = 'detail-container'
+            const sinopsisLabel = document.createElement("h3");
+            sinopsisLabel.className = 'text-label'
+            sinopsisLabel.textContent = "SINOPSIS"
+            const sinopsisValue = document.createElement("p");
+            sinopsisValue.className = 'text-value'
+            sinopsisValue.textContent = movie.plot.plotText.plainText
+            sinopsisContainer.appendChild(sinopsisLabel)
+            sinopsisContainer.appendChild(sinopsisValue)
+
+            const durationContainer = document.createElement("div")
+            durationContainer.className = 'detail-container'
+            const durationLabel = document.createElement("h3");
+            durationLabel.className = 'text-label'
+            durationLabel.textContent = "DURATION"
+            const duration = formatDuration(movie.runtime.seconds);
+            const durationValue = document.createElement("p");
+            durationValue.className = 'text-value'
+            durationValue.textContent = duration
+            durationContainer.appendChild(durationLabel)
+            durationContainer.appendChild(durationValue)
+
+            detailsContainer.append(nameContainer)
+            detailsContainer.appendChild(genresContainer)
+            detailsContainer.appendChild(sinopsisContainer)
+            detailsContainer.appendChild(durationContainer)
+
+            const element = document.getElementById("details");
+            element.appendChild(imageContainer);
+            element.appendChild(detailsContainer)
+        });
+</script>
+<footer>
+    <div class="about-us">
+        <h2>About</h2>
+        <h3>Who are we?</h3>
+        <h3>Terms and Conditions</h3>
+    </div>
+    <div class="contact-us">
+        <h2>Contact us</h2>
+        <h3>FAQs</h3>
+    </div>
+    <div class="maketing-empresarial">
+        <h2>Marketing</h2>
+        <h3>Services</h3>
+    </div>
+    <div class="downloads">
+        <h2>Download our App</h2>
+    </div>
+    <div class="apps">
+        <img src="../resources/icons/facebook-red.png" alt="">
+        <img src="../resources/icons/twitter-red.png" alt="">
+        <img src="../resources/icons/instagram-red.png" alt="">
+    </div>
+</footer>
+
+</html>

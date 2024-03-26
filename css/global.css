@@ -11,7 +11,7 @@ header {
     border-bottom: 1px solid #0000003b;
 }
 
-header > nav {
+header>nav {
     display: grid;
     grid-template-columns: 25% 50% 25%;
     width: 100%;
@@ -21,7 +21,7 @@ header > nav {
 }
 
 nav.options {
-    display: flex; 
+    display: flex;
 }
 
 /* nav bar about us */
@@ -29,12 +29,12 @@ nav.about-us {
     background-color: #ececec;
 }
 
-.social-media > img {
+.social-media>img {
     height: 20px;
     margin: 0px 3px;
 }
 
-nav.options > h4 {
+nav.options>h4 {
     padding: 0px 15px;
     color: black;
     font-size: x-small;
@@ -68,7 +68,7 @@ nav.shop-options {
     height: 18px;
 }
 
-nav.options > h3 {
+nav.options>h3 {
     padding: 0px 10px;
     color: darkred;
     font-size: small;
@@ -93,30 +93,31 @@ button.more-information {
     margin-left: 10%;
     margin-bottom: 3%;
     background-color: darkred;
-    top: calc(50% - -12px); 
+    top: calc(50% - -12px);
     font-size: x-small;
 }
- /*default breakpoints from material UI: https://mui.com/material-ui/customization/breakpoints/#default-breakpoints*/
+
+/*default breakpoints from material UI: https://mui.com/material-ui/customization/breakpoints/#default-breakpoints*/
 @media screen and (min-width: 600px) {
     button.more-information {
         padding: 2px 4px;
         font-size: small;
         top: calc(50% - -25px);
     }
-  } 
+}
 
-  @media screen and (min-width: 900px) {
+@media screen and (min-width: 900px) {
     button.more-information {
         top: calc(50% - -35px);
     }
-  } 
+}
 
-  @media screen and (min-width: 1200px) {
+@media screen and (min-width: 1200px) {
     button.more-information {
         padding: 6px 8px;
         top: calc(50% - -45px);
     }
-  } 
+}
 
 /* City filter */
 div.filter {
@@ -126,7 +127,7 @@ div.filter {
     padding: 10px 0px;
 }
 
-div.filter > div {
+div.filter>div {
     display: flex;
 }
 
@@ -165,31 +166,29 @@ h1 {
 }
 
 /*movie-list */
-div.movie-list{
+div.movie-list {
     display: grid;
-    grid-template-columns: 
-        repeat(
-            auto-fit,
-            minmax(230px, 1fr)
-        );
+    grid-template-columns:
+        repeat(auto-fit,
+            minmax(230px, 1fr));
     gap: 25px;
     padding: 0px 10% 30px 10%;
 }
 
-div.movie-list div.poster-container{
+div.movie-list div.poster-container {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
 }
 
-div.movie-list div.poster-container img{
+div.movie-list div.poster-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-div.movie-list div.poster-container button{
+div.movie-list div.poster-container button {
     border-radius: 0;
     width: 100%;
     background-color: darkred;
@@ -216,8 +215,76 @@ footer div h3 {
     font-size: smaller;
 }
 
-footer div.apps > img {
+footer div.apps>img {
     height: 17px;
     margin: 3% 10px
-    
+}
+
+/*movie details*/
+
+.movie-details {
+    display: flex;
+    justify-content: center;
+}
+
+.details {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 2rem;
+    margin: 2rem;
+    box-shadow: 0 0 10px 0px #0000003b;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    justify-content: center;
+}
+
+.poster-container {
+    max-width: 23rem;
+    height: 23rem;
+
+}
+
+.poster-container img{
+    width: 100%;
+    height: 100%;
+}
+
+.detail-container:not(:last-child) {
+    border-bottom: 1px dashed #0000003b;
+    padding-bottom: 1rem;
+}
+
+.text-label {
+    font-size: medium;
+    font-weight:lighter;
+    font-family: Arial;
+}
+
+.text-value {
+    color: rgb(61, 60, 60);
+    margin: 0;
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+}
+
+.divider {
+    border: 1px solid;
+    border-color: #cecaca;
+}
+
+@media screen and (max-width: 950px) {
+    .details {
+        flex-direction: column;
+    }
+
+    .poster-container {
+        max-width: 100%;
+        height: 20rem;
+    }
+
+    .detail-container {
+        max-width: 100%;
+    }
+
 }
